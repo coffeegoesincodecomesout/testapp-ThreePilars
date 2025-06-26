@@ -54,17 +54,24 @@ func main() {
 
    prometheus.MustRegister(pingCounter)
 
-   logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
-   logger.Info("Server is starting... ")
-
-   http.HandleFunc("/ping", ping) {
+   http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
            trace := otel.Tracer("http-server")
 		_, span := trace.Start(r.Context(), "handleRequest")
 		defer span.End()
 
 		time.Sleep(1 * time.Second)
 		span.SetStatus(codes.Ok, "Status 200")
-   }
+                
+                pingCounter.Inc()
+                fmt.Fprintf(w, "pong")
+  
+                logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+                logger.Info("ping...pong...")
+
+   }) 
+
+   logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))          
+   logger.Info("Server is starting... ")              
 
    http.Handle("/metrics", promhttp.Handler())
    http.ListenAndServe(":8090", nil)
