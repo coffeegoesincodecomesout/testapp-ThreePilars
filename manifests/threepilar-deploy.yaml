@@ -1,0 +1,40 @@
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns1
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: threepilar-example-deployment
+  namespace: ns1
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: threepilar-example
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  serviceAccount: otel-collector-sidecar
+  template:
+    metadata:
+      labels:
+        app: threepilar-example
+      annotations:
+        sidecar.opentelemetry.io/inject: "true"
+    spec:
+      containers:
+      - name: threepilar-example
+        image: quay.io/rhn_support_nigsmith/testapp-threepilars:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8090
