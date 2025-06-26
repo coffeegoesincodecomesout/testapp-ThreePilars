@@ -24,15 +24,6 @@ var pingCounter = prometheus.NewCounter(
    },
 )
 
-func ping(w http.ResponseWriter, req *http.Request) {
-   pingCounter.Inc()
-   fmt.Fprintf(w, "pong")
-   
-   logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
-   logger.Info("ping...pong...")
-
-}
-
 func main() {
    ctx := context.Background()
    exp, err := otlptracegrpc.New(
