@@ -1,2 +1,2 @@
 # testapp-ThreePilars
-I usee this to demonstrate the three pilars of observability 
+I use this to demonstrate the three pilars of observability 
