@@ -1,6 +1,13 @@
 # testapp-ThreePilars
 I use this to demonstrate the three pilars of observability 
 
+The following repo contains a very basic webserver: https://github.com/coffeegoesincodecomesout/testapp-ping
+The folowiing repo contains the same webserver with logging:
+The following repo contains the same webserver instrumeted for Prometheus metrics: https://github.com/coffeegoesincodecomesout/testapp-InstrumentedPing 
+The following repo contains the same webserver instrumented for Opentelemetry traces: 
+
+This repo contains the same webserver with metrics, logs and traces enabled - The three pilars of observability.  
+
 ### Instructions 
 
 1. Ensure the Red Hat Build of OpenTelemetry operator is installed on your cluster 
