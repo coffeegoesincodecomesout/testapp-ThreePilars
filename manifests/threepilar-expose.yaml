@@ -19,6 +19,7 @@ metadata:
   name: threepilar-example-route
   namespace: ns1
 spec:
+  path: "/ping"
   to:
     kind: Service
     name: threepilar-example-service
