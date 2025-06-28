@@ -5,14 +5,15 @@ The following repo contains a very basic webserver:
 - [testapp-ping](https://github.com/coffeegoesincodecomesout/testapp-ping)
 
 The following repo contains the same webserver with basic logging:
+- [testapp-pingLogging](https://github.com/coffeegoesincodecomesout/testapp-pingLogging)
 
 The following repo contains the same webserver with basic Prometheus instrumentation: 
 - [testapp-InstrumentedPing](https://github.com/coffeegoesincodecomesout/testapp-InstrumentedPing)
 
-The following repo contains the same webserver instrumentated for Opentelemetry traces: 
+The following repo contains the same webserver instrumentated for Opentelemetry tracing: 
 - [testapp-OTELbasic](https://github.com/coffeegoesincodecomesout/testapp-OTELbasic)
 
-This repo contains the same webserver with metrics, logs and traces enabled - The three pilars of observability.  
+This repo contains that same webserver with metrics, logs and traces enabled - The three pilars of observability.  
 
 ### Instructions 
 
@@ -31,7 +32,7 @@ $ oc scale --replicas=0 deployment/threepilar-example-deployment
 $ oc scale --replicas=1 deployment/threepilar-example-deployment
 ```
 
-4. call the endpoint and view the response, check the log, check the metrics view the trace
+4. call the endpoint, check the log, check the metrics, view the trace
 
 ```
 $ curl -I `oc get route threepilar-example-route -n ns1 | awk 'NR>1 {print $2}'`/ping
