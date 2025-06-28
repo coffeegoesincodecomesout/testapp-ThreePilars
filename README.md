@@ -19,7 +19,7 @@ This repo contains that same webserver with metrics, logs and traces enabled - T
 
 1. Ensure the Red Hat Build of OpenTelemetry operator is installed on your cluster 
 
-2. Create namespace, deployment, service and route
+2. Create namespace, deployment, service, route, and OTEL collector in sidecar mode
 
 ```
 $ oc apply -f manifests/ 
